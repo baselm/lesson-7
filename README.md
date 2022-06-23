@@ -1,14 +1,19 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In the project directory, you can run:
+### install Material UI 
+`npm install @mui/material @emotion/react @emotion/styled`
+### install Material ui  Icons
+`npm install @mui/icons-material`
+### install json server
+`npm install -g json-server`
+### publish json data using json server as an API 
+`json-server --watch data/data.json --port 8000`
 
 ## Available Scripts
 
-In the project directory, you can run:
-npm install @mui/material @emotion/react @emotion/styled
-npm install @mui/icons-material
-json-server --watch data/data.json --port 8000
-npm install -g json-server
+
 
 ### `npm start`
 
@@ -73,3 +78,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # lesson-7
+
