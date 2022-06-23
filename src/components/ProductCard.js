@@ -10,10 +10,7 @@ import { Card, CardContent, CardHeader, Container, CardActions, Typography, Icon
 export default function ProductCard({product}) {
 console.log(product.title   )
 const [active,setActive]=useState(true)
-  const HandelAddToFav= (id) => {
-
-
-  }
+ 
   return (
 
     <Container>
@@ -23,12 +20,12 @@ const [active,setActive]=useState(true)
         <IconButton onClick={e => {
           console.log("add to fav", product.id)
           setActive(!active);
-          HandelAddToFav();
+          
 
         }}
        
         >
-          {active ? <FavoriteBorderSharpIcon /> : <FavoriteIcon color="success"/>}
+          {active ? <FavoriteBorderSharpIcon /> : <FavoriteIcon color="secondary"/>}
 
         </IconButton>
       }
