@@ -1,6 +1,23 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Create an empty App
+`npx create-react-app Lesson-7`
+
+------------
+
+
+The Project is divided into Seven branches each branch covers a certain step as below:
+1.  Step 1 Covers the creation of the project
+2.  Step 2 Covers the Creation of Empty Components for (Products, ProductCard, SignIn, SignOut) and routers dom configuration
+3.  Step 3 Covers using State and Fetching a data from a JSON server API
+4.  Step 4 Covers the use of Card Component to Display Products images 
+5.  Step 5 Covers the use of Card Actions and Card Content. Adding Several icons and activation of Icon button. 
+6.  Step 6 Covers the use of Progress bar and Data loading 
+
+------------
+
+
 In the project directory, you can run:
 ### install Material UI 
 `npm install @mui/material @emotion/react @emotion/styled`
@@ -78,4 +95,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # lesson-7
+
 
