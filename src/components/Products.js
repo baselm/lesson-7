@@ -1,22 +1,16 @@
 import { Button, Container, Grid, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import ProductCard from './ProductCard';
 
 export default function Products() {
 
-    // Function to Handle Click
-    const HandleClick= () => {
-        setName("Alice"); 
-        console.log(name);
-    }
+    
 
-const [name, setName] = useState('Bob')
 // use State to monitor the products data
-
 const [products, setProducts] = useState([]);
 
 
- 
-
+// use effect to get the data from the server api  
 useEffect( () => {
     fetch('http://localhost:8000/products')
     .then(res => res.json())
@@ -34,14 +28,22 @@ useEffect( () => {
                     Products Page
                 </Typography>
                  <Typography>
+                    
+                 </Typography>
+
+              
+            </Grid>
+        </Grid>
+        <Grid container>
                     {
                         products.map(product => (
-                            <p key={product.id}> {product.title}</p>
+
+
+                            <Grid item xs={12} md={6} lg={3} key={product.id}>
+                                <ProductCard product={product} />
+                                </Grid>
                         ))
                     }
-                 </Typography>
-                <Button onClick={HandleClick}> Click Me!</Button>
-            </Grid>
         </Grid>
     </Container>
   )
