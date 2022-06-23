@@ -16,7 +16,8 @@ useEffect( () => {
     .then(res => res.json())
     .then(data => {
                     setProducts(data);
-                    setIsLoading(false);})
+                    setIsLoading(false);
+                          })
 
 }
     
