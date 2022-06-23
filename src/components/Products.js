@@ -60,7 +60,7 @@ useEffect(() => {
         
        
         </Grid>
-        <Grid container pacing={2}>
+        <Grid container spacing={2}>
                     { products &&
                         products.map(product => (
 
