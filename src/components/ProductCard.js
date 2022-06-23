@@ -8,8 +8,8 @@ import { Card, CardContent, CardHeader, Container, CardActions, Typography, Icon
 
 
 export default function ProductCard({product}) {
-console.log(product.title   )
-const [active,setActive]=useState(true)
+
+const [active,setActive]=useState(true);
  
   return (
 

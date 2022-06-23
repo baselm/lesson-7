@@ -46,7 +46,7 @@ useEffect(() => {
     <Container>
         <Grid container >
         <Grid item lg={12}>
-        <Typography component="h2" variant="h1" color="secondary" align="center" sx={{mt:4}}>
+        <Typography component="h2" variant="h1" color="secondary" align="center" sx={{mt:10}}>
                  Products Page 
                  
         </Typography>

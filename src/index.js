@@ -8,18 +8,26 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import Products from './components/Products';
 import {Routes, Route} from 'react-router-dom'
-
+import AppLayout from "./components/AppLayout"
+import Orders from './components/Orders';
+import Dashboard from './components/Dashboard';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+   <AppLayout>
   <Routes>
-    <Route path="/" element={<App />} />
+ 
+      <Route path="/" element={<App />} />
+      
+      <Route path="SignUp" element={<SignUp />} />
+      <Route path="SignIn" element={<SignIn />} />
+      <Route path="Products" element={<Products />} />
+      <Route path="Orders" element={<Orders />} />
+      <Route path="Dashboard" element={<Dashboard />} />
     
-    <Route path="SignUp" element={<SignUp />} />
-    <Route path="SignIn" element={<SignIn />} />
-    <Route path="Products" element={<Products />} />
 
   </Routes>
+  </AppLayout>
 </BrowserRouter>
 );
 
