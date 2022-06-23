@@ -23,11 +23,12 @@ In the project directory, you can run:
 `npm install @mui/material @emotion/react @emotion/styled`
 ### install Material ui  Icons
 `npm install @mui/icons-material`
+### Install Routers dom
+npm install react-router-dom@6
 ### install json server
 `npm install -g json-server`
 ### publish json data using json server as an API 
 `json-server --watch data/data.json --port 8000`
-
 ## Available Scripts
 
 
