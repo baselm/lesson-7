@@ -22,9 +22,8 @@ useEffect( () => {
     .then(res => res.json())
     .then(data => setProducts(data))
 
-}
-    
-)
+                }
+                )
 
   return (
     <Container>
