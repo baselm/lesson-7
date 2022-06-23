@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 `npx create-react-app Lesson-7`
 The Project is divided into Seven Branches each branch covers a certain step as below:
 1.  Step 1 Covers the creation of the project
-2. Step 2 Covers the Creation of Empty Components for (Products, ProductCard, SignIn, SignOut) and routers dom configuration
+2.  Step 2 Covers the Creation of Empty Components for (Products, ProductCard, SignIn, SignOut) and routers dom configuration
 3.  Step 3 Covers using State and Fetching a data from a JSON server API
 4.  Step 4 Covers the use of Card Component to Display Products images 
 5.  Step 5 Covers the use of Card Actions and Card Content. Adding Several icons and activation of Icon button. 
