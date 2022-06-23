@@ -7,12 +7,16 @@ export default function Products() {
     
 
 // use State to monitor the products data
-const [products, setProducts] = useState([]);
+const [products, setProducts] = useState(null);
 // use effect to get the data from the server api  
+// Make a state for pending loading data 
+const [isLoading, setIsLoading]= useState(true);
 useEffect( () => {
     fetch('http://localhost:8000/products')
     .then(res => res.json())
-    .then(data => setProducts(data))
+    .then(data => {
+                    setProducts(data);
+                    setIsLoading(false);})
 
 }
     
@@ -47,12 +51,16 @@ useEffect(() => {
         </Typography>
         <LinearProgress variant="determinate" value={progress} color="secondary"/>
 
+        <Typography color="error" align="center" sx={{mt:4}}>
+          {isLoading && "Data is Loading ..."}
+        </Typography>
+
         </Grid>
         
        
         </Grid>
         <Grid container pacing={2}>
-                    {
+                    { products &&
                         products.map(product => (
 
 
