@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Adding Drawer and App Nav Bar. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ### Create an empty App
@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 The Project is divided into Seven branches each branch covers a certain step as below:
-1.  Step 1 Covers the creation of the project
+1.  Step 1 add new components (Dashboard and Orders)
 2.  Step 2 Covers the Creation of Empty Components for (Products, ProductCard, SignIn, SignOut) and routers dom configuration
 3.  Step 3 Covers using State and Fetching a data from a JSON server API
 4.  Step 4 Covers the use of Card Component to Display Products images 
