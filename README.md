@@ -9,12 +9,120 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The Project is divided into Seven branches each branch covers a certain step as below:
 1.  Step 1 add new components (Dashboard and Orders)
-2.  Step 2 Covers the Creation of Empty Components for (Products, ProductCard, SignIn, SignOut) and routers dom configuration
-3.  Step 3 Covers using State and Fetching a data from a JSON server API
-4.  Step 4 Covers the use of Card Component to Display Products images 
-5.  Step 5 Covers the use of Card Actions and Card Content. Adding Several icons and activation of Icon button. 
-6.  Step 6 Covers the use of Progress bar and Data loading 
+2.  Step 2  add an Application Layout
+3.  Step 3 Modify the index.js file so the AppLayout will contains all routes:
+```
+<BrowserRouter>
+   <AppLayout>
+  <Routes>
+ 
+      <Route path="/" element={<App />} />
+      
+      <Route path="SignUp" element={<SignUp />} />
+      <Route path="SignIn" element={<SignIn />} />
+      <Route path="Products" element={<Products />} />
+      <Route path="Orders" element={<Orders />} />
+      <Route path="Dashboard" element={<Dashboard />} />
+    
 
+  </Routes>
+  </AppLayout>
+</BrowserRouter>
+```
+4.  Step 4 Add a AppBar to the application layout and a drawer:
+```
+ <div>
+      <div>
+      <AppBar
+        position="fixed"
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div" sx={{flexGrow:1, marginRight: 150}}
+>
+            {pageTitle}
+          </Typography>
+          
+          <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                
+                color="inherit"
+              >
+                <AccountCircleOutlined />
+              </IconButton>
+
+        </Toolbar>
+        
+      </AppBar>
+      <Drawer
+        
+        variant="permanent"
+        anchor="left"
+      >
+        <Toolbar />
+        <Divider />
+        <List>
+            <ListItem  
+
+            disablePadding
+            >
+                  <ListItemButton onClick={ () => {navigate('/Products'); setpageTitle('Products')}}>
+                    <ListItemIcon>
+                      <CategoryIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Products'} />
+                  </ListItemButton>
+            </ListItem>
+            <Divider />
+            <ListItem  disablePadding>
+                  <ListItemButton onClick={ () => {navigate('/Orders'); setpageTitle('Orders')}}>
+                    <ListItemIcon>
+                    <UpdateIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Orders'} />
+                  </ListItemButton>
+            </ListItem>
+            <Divider />
+            <ListItem  disablePadding>
+                  <ListItemButton onClick={ () => {navigate('/Dashboard'); setpageTitle('Dashboard')}}>
+                    <ListItemIcon>
+                    <DashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Dashboard'} />
+                  </ListItemButton>
+            </ListItem>
+            <Divider />
+        </List>
+         
+         
+      </Drawer>
+      </div>
+      <div className='class.page'>
+      {children}
+      </div>
+    </div>
+```
+5.  Step 5 Add a data Grid to the products page:
+Install the demo data using 
+`
+npm install @mui/x-data-grid-generator
+`
+```
+<Container sx={{mt:12}}>
+          <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        {...data}
+        components={{
+          Toolbar: GridToolbar,
+        }}
+      />
+    </div>
+    </Container>
+```
 ------------
 
 
