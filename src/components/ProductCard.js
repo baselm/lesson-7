@@ -6,20 +6,22 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Card, CardContent, CardHeader, Container, CardActions, Typography, IconButton, CardMedia } from '@mui/material'
 import AddSharpIcon from '@mui/icons-material/AddSharp';
 import { useNavigate } from 'react-router-dom';
+import { DeleteOutlineRounded } from '@mui/icons-material';
 
 
-export default function ProductCard({product}) {
+export default function ProductCard({product, handleDelete}) {
 
 const [active,setActive]=useState(true);
 const navigateTo = useNavigate();
+
 const handleCreateProduct = (e) => {
   navigateTo('/CreateProduct')
 }
- 
+
   return (
 
     <Container>
-         <Card elevation={2}>
+         <Card elevation={6}>
       <CardHeader 
       action= {
         <IconButton onClick={e => {
@@ -55,7 +57,11 @@ const handleCreateProduct = (e) => {
       <CardActions sx={{   display: "flex",
     justifyContent: "space-between"}}>
       <IconButton>
-         <ShoppingCartIcon  fontSize='large' color="secondary"  style={{ color: '#0C7C90'}} />
+         <ShoppingCartIcon  fontSize='large'  style={{ color: '#0C7C90'}} />
+        </IconButton>
+
+        <IconButton onClick={ () => handleDelete(product.id)}> 
+          <DeleteOutlineRounded fontSize='large'  style={{ color: '#0C7C90'}} />
         </IconButton>
 
         <IconButton onClick={handleCreateProduct}>

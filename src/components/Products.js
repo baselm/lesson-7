@@ -11,6 +11,18 @@ const [products, setProducts] = useState(null);
 // use effect to get the data from the server api  
 // Make a state for pending loading data 
 const [isLoading, setIsLoading]= useState(true);
+
+const handleDelete = async(id) => {
+  console.log('sssss =',id);
+  await fetch('http://localhost:8000/products/' + id, {
+    method : 'DELETE'
+  })
+  const newProducts = products.filter(product => product.id != id);
+  setProducts(newProducts);
+
+ }
+  
+
 useEffect( () => {
     fetch('http://localhost:8000/products')
     .then(res => res.json())
@@ -66,7 +78,10 @@ useEffect(() => {
 
 
                             <Grid item xs={12} md={6} lg={4} key={product.id}>
-                                <ProductCard product={product} />
+                                <ProductCard product={product} handleDelete={handleDelete} />
+                                
+
+
                                 </Grid>
                         ))
                     }

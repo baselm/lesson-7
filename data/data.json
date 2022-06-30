@@ -1,28 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "title": "Coffee and Pastries",
-      "type": "Coffee",
-      "description": "Coffee and Pastries",
-      "filename": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/flat-white-3402c4f.jpg?quality=90&webp=true&resize=500,454",
-      "height": 600,
-      "width": 400,
-      "price": 28.1,
-      "rating": 4
-    },
-    {
-      "id": 2,
-      "title": "Sweet fresh stawberry",
-      "type": "fruit",
-      "description": "Sweet fresh stawberry on the wooden table",
-      "filename": "https://insanelygoodrecipes.com/wp-content/uploads/2021/08/Chocolate-Covered-Strawberries-with-Chocolate-Syrup-1365x2048.webp",
-      "height": 450,
-      "width": 299,
-      "price": 29.45,
-      "rating": 4
-    },
-    {
       "id": 3,
       "title": "Cup-of-Hot-Chocolate",
       "type": "Chocolate",
@@ -32,17 +10,6 @@
       "width": 299,
       "price": 18.95,
       "rating": 3
-    },
-    {
-      "id": 4,
-      "title": "Green smoothie",
-      "type": "dairy",
-      "description": "Glass of green smoothie with quail egg's yolk, served with cocktail tube, green apple and baby spinach leaves over tin surface.",
-      "filename": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/01/Green-Smoothie-Recipe-7.jpg",
-      "height": 600,
-      "width": 399,
-      "price": 17.68,
-      "rating": 4
     },
     {
       "id": 5,
@@ -67,17 +34,6 @@
       "rating": 0
     },
     {
-      "id": 7,
-      "title": "Fresh stawberry",
-      "type": "fruit",
-      "description": "Sweet fresh stawberry on the wooden table",
-      "filename": "https://www.savoringthegood.com/wp-content/uploads/2019/06/strawberry-topping-2-1.jpg",
-      "height": 600,
-      "width": 399,
-      "price": 28.59,
-      "rating": 4
-    },
-    {
       "id": 8,
       "title": "Strawberry jelly",
       "type": "fruit",
@@ -87,28 +43,6 @@
       "width": 600,
       "price": 14.18,
       "rating": 1
-    },
-    {
-      "id": 9,
-      "title": "Pears juice",
-      "type": "fruit",
-      "description": "Fresh pears juice on the wooden table",
-      "filename": "https://vaya.in/recipes/wp-content/uploads/2018/05/shutterstock_161373047.jpg",
-      "height": 600,
-      "width": 398,
-      "price": 19.49,
-      "rating": 4
-    },
-    {
-      "id": 10,
-      "title": "Strawberry smoothie",
-      "type": "fruit",
-      "description": "Glass of red strawberry smoothie with chia seeds, served with retro cocktail tube, fresh mint and strawberries over dark background",
-      "filename": "https://www.thespruceeats.com/thmb/ZOWsqgxRFj8DNEYS4YpbjsLrrJ8=/3648x3648/smart/filters:no_upscale()/strawberry-breakfast-smoothie-recipe-2097149-hero-02-5c1d4b2a46e0fb00014bf2ec.jpg",
-      "height": 600,
-      "width": 400,
-      "price": 28.86,
-      "rating": 2
     },
     {
       "id": 11,
@@ -131,6 +65,6 @@
       "width": 401,
       "price": 18.18,
       "rating": 1
-    } 
+    }
   ]
 }
