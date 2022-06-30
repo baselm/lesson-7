@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CheckIcon from '@mui/icons-material/Check';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Card, CardContent, CardHeader, Container, CardActions, Typography, IconButton, CardMedia } from '@mui/material'
-
+import AddSharpIcon from '@mui/icons-material/AddSharp';
 
 
 export default function ProductCard({product}) {
@@ -50,11 +50,11 @@ const [active,setActive]=useState(true);
       <CardActions sx={{   display: "flex",
     justifyContent: "space-between"}}>
       <IconButton>
-         <ShoppingCartIcon color="secondary" />
+         <ShoppingCartIcon color="secondary" fontSize='large'/>
         </IconButton>
 
         <IconButton>
-         <CheckIcon color="error" />
+         <AddSharpIcon color="secondary" fontSize='large'/>
         </IconButton>
       </CardActions>
 
