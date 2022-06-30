@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import CheckIcon from '@mui/icons-material/Check';
+
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Card, CardContent, CardHeader, Container, CardActions, Typography, IconButton, CardMedia } from '@mui/material'
 import AddSharpIcon from '@mui/icons-material/AddSharp';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function ProductCard({product}) {
 
 const [active,setActive]=useState(true);
+const navigateTo = useNavigate();
+const handleCreateProduct = (e) => {
+  navigateTo('/CreateProduct')
+}
  
   return (
 
@@ -50,11 +55,11 @@ const [active,setActive]=useState(true);
       <CardActions sx={{   display: "flex",
     justifyContent: "space-between"}}>
       <IconButton>
-         <ShoppingCartIcon color="secondary" fontSize='large'/>
+         <ShoppingCartIcon  fontSize='large' color="secondary"  style={{ color: '#0C7C90'}} />
         </IconButton>
 
-        <IconButton>
-         <AddSharpIcon color="secondary" fontSize='large'/>
+        <IconButton onClick={handleCreateProduct}>
+        <AddSharpIcon fontSize='large' style={{ color: '#0C7C90'}} />
         </IconButton>
       </CardActions>
 

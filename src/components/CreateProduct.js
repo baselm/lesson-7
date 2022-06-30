@@ -1,152 +1,116 @@
-import { Button, Container, Divider, FormControl, FormControlLabel, FormLabel, Grid, MenuItem, Radio, RadioGroup, TextField, Typography } from '@mui/material'
-
-import React, { useEffect, useState } from 'react'
-import GradeSharpIcon from '@mui/icons-material/GradeSharp';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRightOutlined'
+import { Button, Container, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Rating, TextField } from '@mui/material'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+
 export default function CreateProduct() {
-    const [rating, setRating] = useState(0);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState(0);
-    const [category, setCategory]= useState('');
-    const navigateTo = useNavigate();
-    const handleChange = (e) =>{
-        
-        setRating(e.target.value);
-        console.log(e.target.value, 'rating');
-    }
-    const submitform = (e) =>
+    const [title, setTitle] = useState(''); 
+    const [description, setDescription] = useState(''); 
+    const [category, setCategory] = useState('coffee'); 
+    const [rating, setRating] = useState(0); 
+    const [price, setPrice] = useState(0); 
+    const [filename, setFilename] = useState(''); 
+    const navigateTo = useNavigate(); 
+
+
+    const handleProductCreation = (e) =>
     {
-        e.preventDefault();
-        console.log('form submited',title, description, price, category);
-        if (title && description && price) 
+        e.preventDefault(); 
+        if (title && description && category && price)
         {
-            console.log(title, description, category, price, rating);
-            fetch('http://localhost:8000/products', {
+            console.log({title, description, category, rating, price, filename}); 
+            fetch('http://localhost:8000/products',{
                 method: 'POST',
-                headers: {"Content-type": "application/json"},
-                body: JSON.stringify({title , description , price})
-                                    }).then( ()=> navigateTo('/'))
+                headers: {"content-type":"application/json"},
+                body: JSON.stringify({title, description, category, rating, price, filename})
 
-
-            
-         }
+            }).then ( () => navigateTo('/Products'))
         }
+    }
   return (
-
-        <Container sx={{mt:12}}>
-            <Grid container>
-                <Grid item lg={12}>
-
-                <FormLabel>Add New Product</FormLabel>
-                <Divider />
-                <form noValidate onSubmit={submitform}>
-
-                    <TextField 
-                    label='Product Name'
-                    fullWidth
-                    required
-                    variant='outlined'
-                    onChange={ (e) => setTitle(e.target.value) }
-                    color='secondary'
-                    >
-
-                    </TextField>
-                    <TextField 
-                    label='Description'
-                    onChange={ (e) => setDescription(e.target.value) }
-
-                    multiline
-                    rows={2}
-                    fullWidth
-                    required
-                    variant='outlined'
-                    color='secondary'
-                    >
-
-                    </TextField>
-                    <TextField 
-                    label='Price'
-                    onChange={ (e) => setPrice(e.target.value) }
-
-                    fullWidth
-                    type="number"
-
-                    required
-                    variant='outlined'
-                    color='secondary'
-                    >
-
-                    </TextField>
-                     
-                   
+    <Container  sx={{mt:20}}>
 
 
-                    <TextField 
-                    label='Rating'
-                    select
-                    fullWidth
-                    type="number"
-                    value={rating}
-                    helperText="Please select the product rating"
-                    onChange={handleChange}
+        <FormLabel> Add new Product</FormLabel>
+        <form noValidate  onSubmit={handleProductCreation}> 
+        <TextField 
+            label='Product Name'
+            onChange={ (e) => setTitle(e.target.value)}
+            fullWidth
+            required
+            autoFocus
+            variant='outlined'
+            color="info">
 
-                    required
-                    variant='outlined'
-                    color='secondary'
-                    >
-                        <MenuItem key={0} value={0}> No rating </MenuItem>
+            </TextField>
 
-                        <MenuItem key={1} value={1}> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /> </MenuItem>
-                        <MenuItem key={2} value={2}> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /></MenuItem>
-                        <MenuItem key={3} value={3}> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /></MenuItem>
-                        <MenuItem key={4} value={4}> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /> <GradeSharpIcon fontSize="large" style={{ color: '#f5a142' }} /></MenuItem>
+            <TextField 
+                label='Product Description'
+                onChange={(e) => setDescription(e.target.value)}
+                required
 
+                fullWidth
+                variant='outlined'
+                color='info'
+                multiline
+                rows={6}>
 
-                    </TextField>
-
-
-                    <FormControl fullWidth>
-                        <FormLabel>Select Product Category </FormLabel>
-                        <RadioGroup value={category} defaultValue='coffee' onChange={(e)=>setCategory(e.target.value)}>
-                        <FormControlLabel control={<Radio />} label='Coffee' value='coffee'/>
-                                <FormControlLabel control={<Radio />} label='Fruit' value='fruit' /> 
-                                <FormControlLabel control={<Radio />} label='Dairy' value='dairy' /> 
-
-
-                        </RadioGroup>
-
-                               
-
-
- 
-                    </FormControl>
-                    
-                    
-                    <Button
-                    variant="contained"
-                    component="label"
-                    >
-                    Upload File
-                    <input
-                        type="file"
-                        hidden
-                    />
-                    </Button>
-
-                    
-                <Button type='submit' variant='outlined' fullWidth endIcon={<KeyboardArrowRightIcon />}>Submit</Button>
+                </TextField>
                 
-                <Button type='reset'  variant='outlined' fullWidth>reset</Button>
+                <TextField 
+                label='Price'
+                type='number'
+                onChange={(e) => setPrice(e.target.value)}
+                required
 
-             
-                </form>
+                fullWidth
+                variant='outlined'
+                color='info'
+                >
 
-                </Grid>
+                </TextField>
+                <TextField
+                    label='Image URL Address'
+                    onChange={(e) => setFilename(e.target.value)}
 
-            </Grid>
-        </Container>
-   
+                    fullWidth
+                    variant='outlined'
+                    
+                     color='info'>
+
+                    </TextField>
+
+                <FormLabel> Select the product category</FormLabel>
+
+                <FormControl fullWidth>
+                    <RadioGroup 
+                        defaultValue='coffee' 
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        >
+                                <FormControlLabel control={ <Radio />} label='Fruit' value='fruit'/> 
+                                <FormControlLabel control={ <Radio />} label='Dairy' value='dairy'/> 
+                                <FormControlLabel control={ <Radio />} label='Coffee' value='coffee'/> 
+                                <FormControlLabel control={ <Radio />} label='Chocolate' value='chocolate'/> 
+                                <FormControlLabel control={ <Radio />} label='Vegetable' value='vegetable'/> 
+
+                        
+                    </RadioGroup>
+
+                    
+                </FormControl >
+                <Rating
+                    name="simple-controlled"
+                    value={rating}
+                    onChange=
+                     {(event, rating) => {
+                        setRating(rating);
+                      }}
+                    />
+
+            <Button type='submit' fullWidth variant='outlined'>Submit</Button>
+            <Button type='reset' fullWidth variant='outlined'>Reset</Button>
+
+        </form>
+    </Container>
   )
 }

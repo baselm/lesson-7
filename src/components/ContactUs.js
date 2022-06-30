@@ -2,38 +2,54 @@ import { Button, Container, TextField } from '@mui/material'
 import React, { useState } from 'react'
 
 export default function ContactUs() {
-    const [toSend, setToSend] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [subject, setSubject] = useState();
+    const [message, setMessage] = useState();
+    const handleForm = (e) => {
 
-    const handleForm = (e) =>
-    {
-        e.preventDefault();
-        const data = new FormData(e.target);
-        let name = data.get('name');
+        e.preventDefault(); 
 
-        
-        setToSend({...toSend, [e.target.name]: [e.target.value]});
-        console.log(toSend);
-         
+        console.log("Form submited:  ");
+        console.log({name, email, subject, message});
     }
   return (
-    <Container maxWidth='lg' sx={{mt:12}}>
-        <form noValidate onSubmit={handleForm}>
-        <TextField label='Name' fullWidth id="name" name="name"  ></TextField>
-        <TextField label='Email Address' fullWidth type='email' name="email" ></TextField>
-        <TextField label="Subject"  name="subject"  fullWidth></TextField>
-        <TextField label=" Your Message " name="message" helperText="Enter a full description of the issue" fullWidth multiline rows={5}></TextField>
-        <Button type='submit'>Submit</Button>
-        <Button type='reset'>Clear form</Button>
+    <Container maxWidth='lg' sx={{ mt:12 }}>
+        <form noValidate onSubmit={handleForm}> 
+            <TextField 
+                label='Full Name' 
+                name='name' 
+                fullWidth required 
+                onChange={(e) => {setName(e.target.value); console.log(name)}}
+                ></TextField>
+                <TextField 
+                    required 
+                    label='Email Address' 
+                    type='email' fullWidth 
+                    name='email' 
+                    onChange={(e) => setEmail(e.target.value)}
+                    ></TextField>
+                <TextField 
+                    label='Subject' 
+                    name='subject' 
+                    fullWidth
+                    onChange={(e) => setSubject(e.target.value)}
+                    
+                    ></TextField>
+                <TextField 
+                    label='message' 
+                    name='message' 
+                    fullWidth 
+                    multiline 
+                    rows={6}
+                    onChange={(e) => setMessage(e.target.value)}>
 
-    </form>
-
+                    </TextField>
+            <Button type='submit'>Submit</Button>
+            <Button type='reset'> Clear Form</Button>
+        
+        
+        </form>
     </Container>
-    
-    
   )
 }
