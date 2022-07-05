@@ -1,11 +1,11 @@
-import { AppBar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
 import React, { useState } from 'react'
 
 import CategoryIcon from '@mui/icons-material/Category';
 import UpdateIcon from '@mui/icons-material/Update';
 import { useNavigate } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import { AccountCircleOutlined } from '@mui/icons-material';
+
 
 
 
@@ -14,9 +14,16 @@ export default function AppLayout({children}) {
   const drawerWidth = 160;
   let navigate = useNavigate();
   const [pageTitle, setpageTitle] = useState('Solana Cafe');
-  const handleMenu = () => {
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+  const handleMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
 
   }
+  const handleCloseUserMenu = (event) => {
+    setAnchorElUser(null);
+  };
   
   return (
     <div>
@@ -30,22 +37,48 @@ export default function AppLayout({children}) {
 >
             {pageTitle}
           </Typography>
-          
+
+
+          <Tooltip title="Open settings">
           <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                
-                color="inherit"
+                sx={{ p: 0 }}
+                onClick={handleMenu} 
               >
-                <AccountCircleOutlined />
+                
+
+                <Avatar alt="Remy Sharp" src="https://www.w3schools.com/howto/img_avatar.png" />
+               
+                
               </IconButton>
+              </Tooltip>
+              <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              <MenuItem onClick={() => navigate('/SignUp')}>Sign Up</MenuItem>
+              <MenuItem onClick={() => navigate('/SignIn')}>Sign In</MenuItem>
+              <MenuItem onClick={() => navigate('/ContactUs')}>Contact Us</MenuItem>
+              <MenuItem onClick={() => navigate('/Dashboard')}>Log out</MenuItem>
+
+               
+            </Menu>
 
         </Toolbar>
         
       </AppBar>
+      
       <Drawer
         
         variant="permanent"
