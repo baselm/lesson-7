@@ -1,4 +1,4 @@
-import {  Container, Grid, LinearProgress, Typography } from '@mui/material'
+import {  Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, LinearProgress, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import ProductCard from './ProductCard';
 
@@ -11,16 +11,29 @@ const [products, setProducts] = useState(null);
 // use effect to get the data from the server api  
 // Make a state for pending loading data 
 const [isLoading, setIsLoading]= useState(true);
+const [showDeleteMsg, setShowDeleteMsg]= useState(false);
+const [deleteItem, setDeleteItem]= useState(false);
 
 const handleDelete = async(id) => {
-  console.log('sssss =',id);
-  await fetch('http://localhost:8000/products/' + id, {
+
+  setShowDeleteMsg(true);
+  if (deleteItem && !showDeleteMsg)
+  {
+    console.log("handleDelete()", "deleteItem " + deleteItem,"showDeleteMsg "+ showDeleteMsg);
+
+    await fetch('http://localhost:8000/products/' + id, {
     method : 'DELETE'
-  })
-  const newProducts = products.filter(product => product.id != id);
-  setProducts(newProducts);
+  }).then(  () => {const newProducts = products.filter(product => product.id != id);
+    setProducts(newProducts);})
+   
+  
+
+  }
+  
 
  }
+
+
   
 
 useEffect( () => {
@@ -86,6 +99,19 @@ useEffect(() => {
                         ))
                     }
         </Grid>
+        <Dialog
+           open= {showDeleteMsg}>
+          <DialogTitle >{"Delete product"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText>{"Are you sure you want to delete this product"}</DialogContentText>
+            <DialogActions>
+          <Button onClick={ () => {setDeleteItem(false); setShowDeleteMsg(false);console.log("deleteItem " + deleteItem,"showDeleteMsg "+ showDeleteMsg);}} autoFocus>Disagree</Button>
+          <Button onClick={ () => {setDeleteItem(true); setShowDeleteMsg(false); console.log("deleteItem " + deleteItem,"showDeleteMsg "+ showDeleteMsg);}} >
+            Agree
+          </Button>
+        </DialogActions>
+          </DialogContent>
+        </Dialog>
     </Container>
   )
 }
