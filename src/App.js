@@ -1,4 +1,4 @@
-import AppLayout from './components/AppLayout';
+
 import Products from './components/Products';
 
 
