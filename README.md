@@ -134,4 +134,4 @@ export default function AppLayout({children}) {
  
 ------------
 
-### in next step we need to install MYSQL localy or run it a docker container for quick integration 
+### in next step we need to install MYSQL locally or run it a docker container for quick integration 
