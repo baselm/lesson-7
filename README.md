@@ -1,4 +1,4 @@
-# Adding Drawer and App Nav Bar. 
+# Adding a menu item for the user's profile. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ### Create an empty App
@@ -8,9 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 The Project is divided into Seven branches each branch covers a certain step as below:
-1.  Step 1 add new components (Dashboard and Orders)
-2.  Step 2  add an Application Layout
-3.  Step 3 Modify the index.js file so the AppLayout will contains all routes:
+1.  Step 1 add new components (Profile)
+2.  Step 2 Modify the index.js file so you include the profile page:
 ```
 <BrowserRouter>
    <AppLayout>
@@ -23,15 +22,38 @@ The Project is divided into Seven branches each branch covers a certain step as 
       <Route path="Products" element={<Products />} />
       <Route path="Orders" element={<Orders />} />
       <Route path="Dashboard" element={<Dashboard />} />
+      <Route path="CreateProduct" element={<CreateProduct />} />
+      <Route path ="ContactUs" element={<ContactUs />} />
     
 
   </Routes>
   </AppLayout>
 </BrowserRouter>
 ```
-4.  Step 4 Add a AppBar to the application layout and a drawer:
+3.  Step 3 Add a a menu to the application layout:
 ```
- <div>
+  import { AppBar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Toolbar, Typography } from '@mui/material'
+import React, { useState } from 'react'
+
+import CategoryIcon from '@mui/icons-material/Category';
+import UpdateIcon from '@mui/icons-material/Update';
+import { useNavigate } from 'react-router-dom';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import { AccountCircleOutlined } from '@mui/icons-material';
+
+
+
+export default function AppLayout({children}) {
+   
+  const drawerWidth = 160;
+  let navigate = useNavigate();
+  const [pageTitle, setpageTitle] = useState('Solana Cafe');
+  const handleMenu = () => {
+
+  }
+  
+  return (
+    <div>
       <div>
       <AppBar
         position="fixed"
@@ -105,24 +127,11 @@ The Project is divided into Seven branches each branch covers a certain step as 
       {children}
       </div>
     </div>
+  )
+}
+
 ```
-5.  Step 5 Add a data Grid to the products page:
-Install the demo data using 
-`
-npm install @mui/x-data-grid-generator
-`
-```
-<Container sx={{mt:12}}>
-          <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        {...data}
-        components={{
-          Toolbar: GridToolbar,
-        }}
-      />
-    </div>
-    </Container>
-```
+ 
 ------------
 
 
