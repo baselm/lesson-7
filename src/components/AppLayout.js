@@ -46,7 +46,7 @@ export default function AppLayout({children}) {
               >
                 
 
-                <Avatar alt="Remy Sharp" src="https://www.w3schools.com/howto/img_avatar.png" />
+                <Avatar alt="Remy Sharp" src={require('../images/Cafe-Owners.png')} />
                
                 
               </IconButton>
