@@ -15,7 +15,7 @@ export default function AppLayout({children}) {
   let navigate = useNavigate();
   const [pageTitle, setpageTitle] = useState('Solana Cafe');
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
   const handleMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -67,6 +67,7 @@ export default function AppLayout({children}) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem onClick={() => navigate('/Profile')}>Profile</MenuItem>
               <MenuItem onClick={() => navigate('/SignUp')}>Sign Up</MenuItem>
               <MenuItem onClick={() => navigate('/SignIn')}>Sign In</MenuItem>
               <MenuItem onClick={() => navigate('/ContactUs')}>Contact Us</MenuItem>

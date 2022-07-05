@@ -13,6 +13,7 @@ import Orders from './components/Orders';
 import Dashboard from './components/Dashboard';
 import CreateProduct from './components/CreateProduct';
 import ContactUs from './components/ContactUs';
+import Profile from './pages/Profile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -28,6 +29,9 @@ root.render(
       <Route path="Dashboard" element={<Dashboard />} />
       <Route path="CreateProduct" element={<CreateProduct />} />
       <Route path ="ContactUs" element={<ContactUs />} />
+      <Route path ="Profile" element={<Profile />} />
+
+      
     
 
   </Routes>
