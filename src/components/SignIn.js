@@ -34,7 +34,7 @@ export default function SignIn({ setToken }) {
             password
           });
           
-          console.log(token,"token");
+           
           setToken(token);
 
     }
