@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import SignIn from './components/SignIn';
-import Products from './components/Products';
+import Orders from './components/Orders';
 
 
 
@@ -18,7 +18,7 @@ function App() {
   return (
    
     
-    <Products />
+    <Orders />
     
   );
 }

@@ -26,8 +26,9 @@ export default function SignIn({ setToken }) {
     const [password, setPassword] = useState();
     
     const handleSubmit = async e => {
-        e.preventDefault();
-        console.log(password,email);
+        e.preventDefault(); 
+       
+         
         const token = await loginUser({
             email,
             password
@@ -35,6 +36,7 @@ export default function SignIn({ setToken }) {
           
           console.log(token,"token");
           setToken(token);
+
     }
    
   return (
@@ -101,7 +103,7 @@ export default function SignIn({ setToken }) {
                             label ="Remember me" />
                             <Button
 
-                            onClick={handleSubmit}
+
                             type='submit'
                             fullWidth
                             variant='contained'
