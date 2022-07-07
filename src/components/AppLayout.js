@@ -1,11 +1,11 @@
 import { AppBar, Avatar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import CategoryIcon from '@mui/icons-material/Category';
 import UpdateIcon from '@mui/icons-material/Update';
 import { useNavigate } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-
+import useToken from './useToken'
 
 
 
@@ -15,7 +15,19 @@ export default function AppLayout({children}) {
   let navigate = useNavigate();
   const [pageTitle, setpageTitle] = useState('Solana Cafe');
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const {token, setToken } = useToken();
 
+  const handleLogOut = () => {
+    sessionStorage.clear();
+    console.log('session cleared');
+    if (token)
+    console.log('Token exist');
+    else 
+    console.log('No Token'); 
+    setToken(''); 
+    navigate('/SignIn'); 
+    
+  }
 
   const handleMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -71,7 +83,7 @@ export default function AppLayout({children}) {
               <MenuItem onClick={() => navigate('/SignUp')}>Sign Up</MenuItem>
               <MenuItem onClick={() => navigate('/SignIn')}>Sign In</MenuItem>
               <MenuItem onClick={() => navigate('/ContactUs')}>Contact Us</MenuItem>
-              <MenuItem onClick={() => navigate('/Dashboard')}>Log out</MenuItem>
+              <MenuItem onClick={handleLogOut}>Log out</MenuItem>
 
                
             </Menu>

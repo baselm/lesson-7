@@ -62,7 +62,7 @@ export default function SignIn({ setToken }) {
                             <Typography component="h1" variant='h5'>
                                 Sign in 
                             </Typography>
-                            <Box component="form"  noValidate sx={{mt: 1}} onSubmit={handleSubmit}>
+                            <Box component="form"  noValidate sx={{mt: 1}} onSubmit={() => handleSubmit}>
                             <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField 
