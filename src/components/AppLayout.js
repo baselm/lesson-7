@@ -17,10 +17,9 @@ export default function AppLayout({children}) {
   const [pageTitle, setpageTitle] = useState('Solana Cafe');
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  const { token, setToken } = useToken();
 
   const handleLogOut = () => {
-    sessionStorage.clear();
+    localStorage.removeItem('token');
     console.log('clear session'); 
     navigate('/Products'); 
     
