@@ -1,16 +1,14 @@
 
 
+
 import SignIn from './components/SignIn';
-import Products from './components/Products';
+import Orders from './components/Orders';
 import useToken from './components/useToken';
-import { Container } from '@mui/material';
 
 
- 
 
 function App() {
-
- const {token, setToken } = useToken();
+  const { token, setToken } = useToken();
 
   if(!token) {
     return <SignIn setToken={setToken} />
@@ -19,14 +17,11 @@ function App() {
   
   
   return (
-    <Container>
-      { token && <Products />}
-    </Container>
    
-    
-    
-    
-    
+    <div>
+       {token && <Orders />}  
+    </div>
+   
   );
 }
 
