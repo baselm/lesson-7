@@ -26,7 +26,10 @@ app.use('/login', (req, res) => {
 app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
 
 ```
-4. This server.js will create an express API for given the user an authentication token.
+4. This server.js will create an express API for given the user an authentication token. To run the sever, create a new termianle window and run 
+```
+node server/server.js 
+```
 5. In SignIn.js component we need to send a post request to get the user's token. So we need to do two things:
   - Create a function to fetch the token from the users' API 
   ```
