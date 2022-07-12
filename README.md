@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ## Step 11 
-1.  Create a folder called server 
+1. Create a folder called server 
 2. Create a new file called server.js 
 2.  In server.js make sure the file content as below:
 ```
@@ -27,7 +27,7 @@ app.listen(8080, () => console.log('API is running on http://localhost:8080/logi
 
 ```
 4. This server.js will create an express API for given the user an authentication token.
-5. In SignIn.js compoenent we need to send a post request to get the user's token. So we need to do two things:
+5. In SignIn.js component we need to send a post request to get the user's token. So we need to do two things:
   - Create a function to fetch the token from the users' API 
   ```
   async function loginUser(credentials) {
