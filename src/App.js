@@ -1,11 +1,6 @@
-
-
-
 import SignIn from './components/SignIn';
 import Orders from './components/Orders';
 import useToken from './components/useToken';
-
-
 
 function App() {
   const { token, setToken } = useToken();
@@ -13,10 +8,7 @@ function App() {
   if(!token) {
     return <SignIn setToken={setToken} />
   }
-  
-  
-  
-  return (
+    return (
    
     <div>
        {token && <Orders />}  

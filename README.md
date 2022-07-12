@@ -1,4 +1,4 @@
-# Adding an API for token authentication . 
+# Creating a custom hook . 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ### Create an empty App
@@ -8,59 +8,62 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ## Step 12 
-1.  Create a folder called server 
-2. Create a new file called server.js 
-2.  In server.js make sure the file content as below:
+1. In the component folder create a new file called useToken.js.
+2. This file will be used to get/set the token using our custom hook instead of the use state of react-js. 
+3.  In useToken.js make sure the file content as below:
 ```
- const express = require('express');
-const cors = require('cors');
-const app = express();
+  import { useState } from 'react';
 
-app.use(cors());
-app.use('/login', (req, res) => {
-    res.send({
-      token: 'lab-password'
-    });
-  });
+export default function useToken() {
 
-app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
+  
+  const getToken = () => {
+    const tokenString = sessionStorage.getItem('token');
+    const userToken = JSON.parse(tokenString);
+    return userToken?.token
+  };
 
+  const [token, setToken] = useState(getToken());
+
+  const saveToken = userToken => {
+    sessionStorage.setItem('token', JSON.stringify(userToken));
+    setToken(userToken.token);
+  };
+
+  return {
+    setToken: saveToken,
+    token
+  }
+}
 ```
-4. This server.js will create an express API for given the user an authentication token.
-5. In SignIn.js compoenent we need to send a post request to get the user's token. So we need to do two things:
-  - Create a function to fetch the token from the users' API 
+4. This session manager will be used to save the auth token so users can open multiple tabs without the need to re-login.
+5. In App.js  we need to use our custom token hook:
+  - import the custom hook and declare it as a custom state:
   ```
-  async function loginUser(credentials) {
-    return fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-      .then(data => data.json())
-   }
-  ```
-  - Send the email and password of the SignIn form to the API endpoint "/login"
-  ```
-export default function SignIn({ setToken }) {
-    const mytheme = createTheme();
+  import SignIn from './components/SignIn';
+import Orders from './components/Orders';
+import useToken from './components/useToken';
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    
-    const handleSubmit = async e => {
-        e.preventDefault();
-        console.log(password,email);
-        const token = await loginUser({
-            email,
-            password
-          });
-          
-          console.log(token,"token");
-          setToken(token);
-    }
+function App() {
+  const { token, setToken } = useToken();
+
+  if(!token) {
+    return <SignIn setToken={setToken} />
+  }
+    return (
+   
+    <div>
+       {token && <Orders />}  
+    </div>
+   
+  );
+}
+
+export default App;
+
+
   ```
+### Make sure to check that the token is correct before showing the order page.
 
 ------------
 
