@@ -6,7 +6,6 @@ import UpdateIcon from '@mui/icons-material/Update';
 import { useNavigate } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import useToken from './useToken'
-import SignIn from './SignIn';
 
 
 
@@ -16,15 +15,37 @@ export default function AppLayout({children}) {
   let navigate = useNavigate();
   const [pageTitle, setpageTitle] = useState('Solana Cafe');
   const [anchorElUser, setAnchorElUser] = useState(null);
-
+  const [profileImage, setProfileImage] = useState(''); 
+  const [itemDisabled, setItemDisabled] = useState(false); 
+  const { token, setToken } = useToken();
 
   const handleLogOut = () => {
     localStorage.removeItem('token');
     console.log('clear session'); 
+
     navigate('/Products'); 
+    setItemDisabled(true); 
+    setProfileImage(''); 
+
     
 
   }
+
+ 
+  useEffect(() => {
+    // Update the document title using the browser API
+     if(token)
+     {
+      setProfileImage('../images/Cafe-Owners.png');
+      console.log('User is authenticated'); 
+      setItemDisabled(false); 
+
+     }
+     else{
+      setItemDisabled(true); 
+      setProfileImage(''); 
+     }
+  });
 
   const handleMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -58,7 +79,11 @@ export default function AppLayout({children}) {
               >
                 
 
-                <Avatar alt="Remy Sharp" src={require('../images/Cafe-Owners.png')} />
+                <Avatar 
+
+                  alt="My users" 
+                  src= {profileImage}
+                  />
                
                 
               </IconButton>
@@ -79,8 +104,8 @@ export default function AppLayout({children}) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={() => navigate('/Profile')}>Profile</MenuItem>
-              <MenuItem onClick={() => navigate('/SignUp')}>Sign Up</MenuItem>
+              <MenuItem onClick={() => navigate('/Profile')} disabled={itemDisabled} >Profile</MenuItem>
+              <MenuItem onClick={() => navigate('/SignUp')} >Sign Up</MenuItem>
               <MenuItem onClick={handleSignIn}>Sign In</MenuItem>
               <MenuItem onClick={() => navigate('/ContactUs')}>Contact Us</MenuItem>
               <MenuItem onClick={handleLogOut}>Log out</MenuItem>
