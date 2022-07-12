@@ -13,18 +13,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 2. Create a new file called server.js 
 2.  In server.js make sure the file content as below:
 ```
- const express = require('express');
-const cors = require('cors');
-const app = express();
+      const express = require('express');
+      const cors = require('cors');
+      const app = express();
 
-app.use(cors());
-app.use('/login', (req, res) => {
-    res.send({
-      token: 'lab-password'
-    });
-  });
+      app.use(cors());
+      app.use('/login', (req, res) => {
+          res.send({
+            token: 'lab-password'
+          });
+        });
 
-app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
+      app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
 
 ```
 4. This server.js will create an express API for given the user an authentication token. To run the sever, create a new terminal window and run 
