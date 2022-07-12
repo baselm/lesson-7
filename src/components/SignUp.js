@@ -10,8 +10,45 @@ import Button from '@mui/material/Button';
 import {Link } from 'react-router-dom'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
  import CssBaseline from '@mui/material/CssBaseline';
+import { useState } from 'react';
 const theme = createTheme();
+
+async function signUp(credentials) {
+
+    return fetch('http://localhost:8080/api/users/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(data => data.json())
+   }
+
+
 export default function SignUp() {
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState(); 
+
+    
+
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        console.log(password,email);
+        const token = await signUp({
+            firstName,
+            lastName,
+            email,
+            password
+          });
+          
+          console.log(token,"token");
+          //setToken(token);
+    }
+
   return (
     <div>
     <ThemeProvider theme={theme}>
@@ -30,12 +67,13 @@ export default function SignUp() {
                             Sign Up
                         </Typography>
         
-            <Box component="form" noValidate sx={{mt:3}}>
+            <Box component="form" noValidate sx={{mt:3}} onSubmit={handleSubmit}>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <TextField
                     autoComplete='give-name'
                     name="firstName"
+                    onChange={(e) => setFirstName(e.target.value)}
                     required
                     fullWidth
                     id="firstName"
@@ -48,6 +86,7 @@ export default function SignUp() {
                     <TextField
                     autoComplete='last-name'
                     name="lastName"
+                    onChange={(e) => setLastName(e.target.value)}
                     required 
                     fullWidth 
                     id="lastName"
@@ -62,6 +101,7 @@ export default function SignUp() {
                     fullWidth
                     id="email"
                     label="Email Address"
+                    onChange={(e) => setEmail(e.target.value)}
                     name="email"
                     autoComplete='email'
                     />
@@ -72,6 +112,7 @@ export default function SignUp() {
                     fullWidth
                     name="password"
                     type="password"
+                    onChange={(e) => setPassword(e.target.value)}
                     label="Password"
                     id="password"
                     autoComplete='new-password'

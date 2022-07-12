@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 import { Avatar, Container, CssBaseline, Box, Typography, TextField, Grid, FormControlLabel, Checkbox, Button } from '@mui/material';
-import {Link, useNavigate} from "react-router-dom"
+import {Link} from "react-router-dom"
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PropTypes from 'prop-types';
 
