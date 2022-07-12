@@ -27,9 +27,7 @@ export default function AppLayout({children}) {
     setItemDisabled(true); 
     setProfileImage(''); 
 
-    
-
-  }
+     }
 
  
   useEffect(() => {
