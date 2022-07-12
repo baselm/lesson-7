@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ------------
 
 
-## Step 12 
+## Step 11 
 1.  Create a folder called server 
 2. Create a new file called server.js 
 2.  In server.js make sure the file content as below:
