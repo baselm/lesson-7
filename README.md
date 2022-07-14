@@ -17,7 +17,11 @@ mysql -u root -p
 ```
 - Create a Database for our application
 ```
-CREATE DATABASE reactdb
+CREATE DATABASE reactdb;
+```
+- Swtich to the reactdb database
+```
+USE reactdb;
 ```
 - Create a users table 
 ```
