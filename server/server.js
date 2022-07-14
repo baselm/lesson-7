@@ -60,10 +60,6 @@ res.send({
 });
 });
 
-app.post('/api/users/login', (req, res) =>
-{
-  console.log('/api/users/login'); 
-  
-}); 
 
-app.listen(8080, () => console.log('API is running on http://localhost:8080/api/users/login'));
+
+app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
