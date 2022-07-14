@@ -92,17 +92,14 @@ app.post('/api/users/login', async (req, res) =>
       else 
       {
         console.log("Incorrect Password!, Try Again"); 
-        res.send({
-          token: "Email or Password is wrong"
-        })
+
+        res.status(400).send({message: "Incorrect Password!, Try Again"});
       }
     }
     else
     {
       console.log('User does not exist'); 
-       res.send({
-        token: "User does not exist"
-      })
+      res.status(400).send({message: "User does not exist!"});
     }
 
   }); 

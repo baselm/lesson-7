@@ -14,7 +14,21 @@ async function loginUser(credentials) {
       },
       body: JSON.stringify(credentials)
     })
-      .then(data => data.json())
+      .then(res => {
+        
+        if (res.ok)
+            return res.json()
+        else
+           { alert("Incorrect Password/Email!, Try Again"+ res.status);
+                console.log(res.status) }
+            
+      })
+      .catch(err => {
+         console.log('err', err); 
+
+      
+      })
+
    }
 
 
@@ -32,8 +46,8 @@ export default function SignIn({ setToken }) {
             email,
             password
           });
-          console.log(token,"token");
-          if ((token.toString() !== "User does not exist") && (token.toString() !== "Incorrect Password!, Try Again"))
+
+          if (token)
           {
             console.log(token,"token");
             setToken(token);
