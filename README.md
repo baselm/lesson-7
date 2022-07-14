@@ -1,137 +1,87 @@
-# Adding a menu item for the user's profile. 
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-### Create an empty App
-`npx create-react-app Lesson-7`
-
-------------
-
-
-The Project is divided into Seven branches each branch covers a certain step as below:
-1.  Step 1 add new components (Profile)
-2.  Step 2 Modify the index.js file so you include the profile page:
+# Build an API to add users to a MYSQL DB 
+### Installing a MYSQL database using docker.
+Install Docker Desktop using this guide (https://www.docker.com/get-started/) 
+### Run MYSQL as a container in your local machine
 ```
-<BrowserRouter>
-   <AppLayout>
-  <Routes>
- 
-      <Route path="/" element={<App />} />
-      
-      <Route path="SignUp" element={<SignUp />} />
-      <Route path="SignIn" element={<SignIn />} />
-      <Route path="Products" element={<Products />} />
-      <Route path="Orders" element={<Orders />} />
-      <Route path="Dashboard" element={<Dashboard />} />
-      <Route path="CreateProduct" element={<CreateProduct />} />
-      <Route path ="ContactUs" element={<ContactUs />} />
-    
-
-  </Routes>
-  </AppLayout>
-</BrowserRouter>
+docker run -p 3306:3306 --name mysql-docker-local -e MYSQL_ROOT_PASSWORD=lab-password -d mysql:latest
 ```
-3.  Step 3 Add a a menu to the application layout:
+### Connect to your mysql container using the CLI command below or install MYSQLWorkbench (https://www.mysql.com/products/workbench/)
+#### if you want to use the command line interface follow the following steps 
+- Connect to MySQLcontainer’s interactive bash shell with the following command:
 ```
-  import { AppBar, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem, Toolbar, Typography } from '@mui/material'
-import React, { useState } from 'react'
-
-import CategoryIcon from '@mui/icons-material/Category';
-import UpdateIcon from '@mui/icons-material/Update';
-import { useNavigate } from 'react-router-dom';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import { AccountCircleOutlined } from '@mui/icons-material';
-
-
-
-export default function AppLayout({children}) {
-   
-  const drawerWidth = 160;
-  let navigate = useNavigate();
-  const [pageTitle, setpageTitle] = useState('Solana Cafe');
-  const handleMenu = () => {
-
-  }
-  
-  return (
-    <div>
-      <div>
-      <AppBar
-        position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div" sx={{flexGrow:1, marginRight: 150}}
->
-            {pageTitle}
-          </Typography>
-          
-          <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                
-                color="inherit"
-              >
-                <AccountCircleOutlined />
-              </IconButton>
-
-        </Toolbar>
-        
-      </AppBar>
-      <Drawer
-        
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar />
-        <Divider />
-        <List>
-            <ListItem  
-
-            disablePadding
-            >
-                  <ListItemButton onClick={ () => {navigate('/Products'); setpageTitle('Products')}}>
-                    <ListItemIcon>
-                      <CategoryIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Products'} />
-                  </ListItemButton>
-            </ListItem>
-            <Divider />
-            <ListItem  disablePadding>
-                  <ListItemButton onClick={ () => {navigate('/Orders'); setpageTitle('Orders')}}>
-                    <ListItemIcon>
-                    <UpdateIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Orders'} />
-                  </ListItemButton>
-            </ListItem>
-            <Divider />
-            <ListItem  disablePadding>
-                  <ListItemButton onClick={ () => {navigate('/Dashboard'); setpageTitle('Dashboard')}}>
-                    <ListItemIcon>
-                    <DashboardIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Dashboard'} />
-                  </ListItemButton>
-            </ListItem>
-            <Divider />
-        </List>
-         
-         
-      </Drawer>
-      </div>
-      <div className='class.page'>
-      {children}
-      </div>
-    </div>
-  )
-}
+docker exec -it mysql-docker-local bash
+```
+- connect to mysql db
+```
+mysql -u root -p 
+```
+- Create a Database for our application
+```
+CREATE DATABASE reactdb
+```
+- Create a users table 
+```
+CREATE TABLE `reactdb`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `firstname` VARCHAR(45) NULL,
+  `lastname` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `password` VARCHAR(100) NULL,
+  `status` TINYINT NULL,
+  `subscription` TINYINT NULL,
+  PRIMARY KEY (`id`));
 
 ```
- 
-------------
+- Create Customers table
+```
+CREATE TABLE `cutomers` (
+  `user_id` int DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) 
+```
+### Create a new folder in your application root directory called server
+### create a new file called server.js 
+In this file we will use a node packages to connect to our mysql database and to insert users and verify users in the DB.
+### install the following packages inside your react app terminal:
+npm install express cors mysql2 
+### Create a db connection in server.js to test that we can connect
 
-### in next step we need to install MYSQL locally or run it a docker container for quick integration 
+```
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const mysql = require('mysql2');
+
+app.use(cors());
+
+ // Create a connection to the database
+const Connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'lab-password',
+  port: '3306',
+  database: 'reactdb',
+  multipleStatements: true
+});
+
+// open the MySQL connection
+Connection.connect(error => {
+  if (error) throw error;
+  console.log("Successfully connected to the database.");
+});
+
+app.use('/login', (req, res) => {
+    res.send({
+      token: 'lab-password'
+    });
+  });
+
+app.listen(8080, () => console.log('API is running on http://localhost:8080/login'));
+```
+### run the server.js to test the connection 
+```
+node server/server.js
+```
+### in this step we will create an endpoint for handling the login request. 
