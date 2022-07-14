@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
-import { Avatar, Container, CssBaseline, Box, Typography, TextField, Grid, FormControlLabel, Checkbox, Button } from '@mui/material';
+import { Avatar, Container, CssBaseline, Box, Typography, TextField, Grid, FormControlLabel, Checkbox, Button, Alert } from '@mui/material';
 import {Link} from "react-router-dom"
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PropTypes from 'prop-types';
@@ -27,14 +27,22 @@ export default function SignIn({ setToken }) {
     
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log(password,email);
+
         const token = await loginUser({
             email,
             password
           });
-          
           console.log(token,"token");
-          setToken(token);
+          if ((token.toString() !== "User does not exist") && (token.toString() !== "Incorrect Password!, Try Again"))
+          {
+            console.log(token,"token");
+            setToken(token);
+          }
+          else if (token === "User does not exist")
+            console.log("User does not exist");
+          else if (token === "Incorrect Password!, Try Again")
+          console.log("User does not exist");
+
     }
    
   return (

@@ -75,7 +75,7 @@ app.post('/api/users/login', async (req, res) =>
   {
     if (err) throw err;
     console.log(result)
-    if (result)
+    if (result.length)
     {
       console.log(result[0].password, "result.password");
       const dbPassword = result[0].password.toString()
@@ -92,11 +92,17 @@ app.post('/api/users/login', async (req, res) =>
       else 
       {
         console.log("Incorrect Password!, Try Again"); 
+        res.send({
+          token: "Email or Password is wrong"
+        })
       }
     }
     else
     {
       console.log('User does not exist'); 
+       res.send({
+        token: "User does not exist"
+      })
     }
 
   }); 
