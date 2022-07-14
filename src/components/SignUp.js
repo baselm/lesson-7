@@ -31,6 +31,7 @@ export default function SignUp() {
     const [lastName, setLastName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState(); 
+    const [subscription, setSubscription] = useState(true); 
 
     
 
@@ -42,6 +43,7 @@ export default function SignUp() {
             firstName,
             lastName,
             email,
+            subscription, 
             password
           });
           
@@ -78,6 +80,7 @@ export default function SignUp() {
                     fullWidth
                     id="firstName"
                     label = "First Name"
+                    
                     autoFocus
                     />
                   
@@ -119,7 +122,11 @@ export default function SignUp() {
                     />
                 </Grid>
             <Grid item xs={12}>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="I want to receive inspiration, marketing promotions and updates via email." />
+            <FormControlLabel control={
+                            <Checkbox checked={subscription}  
+                                onChange={(e) => setSubscription(e.target.checked)}/>
+                                } 
+                                label="I want to receive inspiration, marketing promotions and updates via email." />
 
 
             </Grid>

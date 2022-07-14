@@ -82,5 +82,5 @@ app.listen(8080, () => console.log('API is running on http://localhost:8080/logi
 ```
 ### run the server.js to test the connection 
 ```
-node server/server.js 
+node server/server.js
 ```
